@@ -28,7 +28,7 @@ class RecipientsController {
     const newRecipient = await Recipients.create(req.body);
 
     return res.json({
-      message: 'Cadastrado com sucesso',
+      message: 'Registered successfully',
       data: { newRecipient },
     });
   }
@@ -51,21 +51,21 @@ class RecipientsController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ message: 'Erro de validação!' });
+      return res.status(400).json({ message: 'Validation fails' });
     }
 
     const recipient = await Recipients.findByPk(req.params.id);
 
     if (!recipient) {
       return res.status(400).json({
-        message: 'Recipient não encontrado.',
+        message: 'Recipient not found.',
       });
     }
 
     const recipientUpdated = await Recipients.update(req.body);
 
     return res.json({
-      message: 'Atualizado com sucesso!',
+      message: 'Updated successfully!',
       data: recipientUpdated,
     });
   }
