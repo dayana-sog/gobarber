@@ -23,6 +23,11 @@ class User extends Model {
     return this;
   }
 
+  // Significa que esse model de usuário pertence a um model de file
+  static associate(models) {
+    this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
+  }
+
   // Verify if the password match.
   checkPassword(password) {
     return bcrypt.compare(password, this.password_hash);
